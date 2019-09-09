@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		64C6218A1E9B53A7901C702E /* Pods_swifty_companion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D96C4A97208BBDAFA787B08 /* Pods_swifty_companion.framework */; };
+		F958AE30231FF20900247939 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958AE2F231FF20900247939 /* SecondViewController.swift */; };
 		F979683623157B4100BDF6C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F979683523157B4100BDF6C4 /* AppDelegate.swift */; };
 		F979683823157B4100BDF6C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F979683723157B4100BDF6C4 /* ViewController.swift */; };
 		F979683B23157B4100BDF6C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F979683923157B4100BDF6C4 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		8BC6F0BB11631BDDEC252E5D /* Pods-swifty_companion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swifty_companion.release.xcconfig"; path = "Target Support Files/Pods-swifty_companion/Pods-swifty_companion.release.xcconfig"; sourceTree = "<group>"; };
 		9D96C4A97208BBDAFA787B08 /* Pods_swifty_companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swifty_companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C405A0D1C32EB007246FC613 /* Pods-swifty_companion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swifty_companion.debug.xcconfig"; path = "Target Support Files/Pods-swifty_companion/Pods-swifty_companion.debug.xcconfig"; sourceTree = "<group>"; };
+		F958AE2F231FF20900247939 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F979683223157B4100BDF6C4 /* swifty_companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swifty_companion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F979683523157B4100BDF6C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F979683723157B4100BDF6C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +56,6 @@
 				C405A0D1C32EB007246FC613 /* Pods-swifty_companion.debug.xcconfig */,
 				8BC6F0BB11631BDDEC252E5D /* Pods-swifty_companion.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,6 +86,7 @@
 				F979683C23157B4500BDF6C4 /* Assets.xcassets */,
 				F979683E23157B4500BDF6C4 /* LaunchScreen.storyboard */,
 				F979684123157B4500BDF6C4 /* Info.plist */,
+				F958AE2F231FF20900247939 /* SecondViewController.swift */,
 			);
 			path = swifty_companion;
 			sourceTree = "<group>";
@@ -204,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F958AE30231FF20900247939 /* SecondViewController.swift in Sources */,
 				F979683823157B4100BDF6C4 /* ViewController.swift in Sources */,
 				F979683623157B4100BDF6C4 /* AppDelegate.swift in Sources */,
 			);
