@@ -14,8 +14,6 @@ class SecondViewController: UIViewController {
     var dataStudent : JSON?
     var dataCoalition : JSON?
     
-    @IBOutlet weak var testLabel: UILabel!
-    
     @IBOutlet weak var displayName: UILabel!
     @IBOutlet weak var yearAndMonth: UILabel!
     @IBOutlet weak var mailLabel: UILabel!
@@ -26,25 +24,22 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var userFaceImg: UIImageView!
+    @IBOutlet weak var coalitionImage: UIImageView!
     @IBOutlet weak var levelPV: UIProgressView!
-    
-    
+    @IBOutlet weak var skillsTableView: UITableView!
+    @IBOutlet weak var projectsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        testLabel.text = String(describing: jason)
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        print("DATA IS: \(String(describing: dataStudent))")
-        print("DATA 2 IS: \(String(describing: dataCoalition))")
-        
-        guard dataStudent != nil else { return }
+        self.navigationController?.navigationBar.isHidden = false
         
         // MARK: FILL_USER_INFO_LABELS
+        
+        guard dataStudent != nil else { return }        
         displayName.text = dataStudent?["displayname"].string ?? ""
         yearAndMonth.text = "\(dataStudent?["pool_year"].string ?? "") \(dataStudent?["pool_month"].string ?? "")"
         mailLabel.text = dataStudent?["email"].string ?? ""
@@ -62,56 +57,33 @@ class SecondViewController: UIViewController {
                 self.userFaceImg.image = UIImage(data: isfaceImg)
             }
         }
-        
-        
-//        userFaceImg.image = userFaceImg.image?.maskWithColor(color: .red)
-        
-        
-        
-//        self.token = JSON(response.data!)["access_token"].string ?? ""
-        
-//        debugPrint(JSON(data!))
+        if let coalitionImg = URL(string: dataCoalition?[0]["cover_url"].string ?? "") {
+            if let iscoalitionImg = try? Data(contentsOf: coalitionImg) {
+                self.coalitionImage.image = UIImage(data: iscoalitionImg)
+            }
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
-
-
-
-//extension UIImage {
-//
-//    func maskWithColor(color: UIColor) -> UIImage? {
-//        let maskImage = cgImage!
-//
-//        let width = size.width
-//        let height = size.height
-//        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
-//
-//        let colorSpace = CGColorSpaceCreateDeviceRGB()
-//        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-//        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
-//
-//        context.clip(to: bounds, mask: maskImage)
-//        context.setFillColor(color.cgColor)
-//        context.fill(bounds)
-//
-//        if let cgImage = context.makeImage() {
-//            let coloredImage = UIImage(cgImage: cgImage)
-//            return coloredImage
-//        } else {
-//            return nil
-//        }
-//    }
-//
-//}
+extension SecondViewController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == skillsTableView {
+            return dataStudent?["cursus_users"][0]["skills"].count ?? 0
+        } else {
+              return dataStudent?["projects_users"].count ?? 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == skillsTableView {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "skillCell", for: indexPath) as! SkillsTableViewCell
+            cell.data = dataStudent?["cursus_users"][0]["skills"][indexPath.row]
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectsTableViewCell
+            cell.data = dataStudent?["projects_users"][indexPath.row]
+            return cell
+        }
+    }
+}
